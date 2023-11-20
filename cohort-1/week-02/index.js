@@ -1,7 +1,16 @@
 const fs = require("fs");
+const express = require("express");
+const app = express();
 
-function callbackfn(err, data) {
-  console.log(data);
+const port = 3000;
+
+function handleFirstRequest(req, res) {
+  res.send("Hello World");
 }
 
-fs.readFile("a.txt", "utf-8", callbackfn);
+app.get("/", handleFirstRequest);
+
+function started() {
+  console.log(`Example app listening on port ${port}`);
+}
+app.listen(port, started);
